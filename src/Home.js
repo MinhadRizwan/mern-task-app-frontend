@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "./UserContext";
 import axios from "axios";
 import './loginandregister.css';
-import URL from "./App";
+import { URL } from "./App";
 
 function Home() {
   const userInfo = useContext(UserContext);
