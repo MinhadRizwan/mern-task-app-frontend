@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "./UserContext";
 import axios from "axios";
 import './loginandregister.css';
+import { URL } from "./App";
 
 function Home() {
   const userInfo = useContext(UserContext);
@@ -10,7 +11,7 @@ function Home() {
   const [filter, setFilter] = useState('uncompleted');
 
   useEffect(() => {
-    axios.get('http://localhost:4000/todos', { withCredentials: true })
+    axios.get(`${URL}/todos`, { withCredentials: true })
       .then(response => {
         setTodos(response.data);
       })
@@ -23,7 +24,7 @@ function Home() {
 
   function addTodo(e) {
     e.preventDefault();
-    axios.put('http://localhost:4000/todos', { text: inputVal }, { withCredentials: true })
+    axios.put(`${URL}/todos`, { text: inputVal }, { withCredentials: true })
       .then(response => {
         setTodos([...todos, response.data]);
         setInputVal('');
@@ -33,7 +34,7 @@ function Home() {
 
   function updateTodo(todo) {
     const data = { id: todo._id, done: !todo.done };
-    axios.post('http://localhost:4000/todos', data, { withCredentials: true })
+    axios.post(`${URL}/todos`, data, { withCredentials: true })
       .then(() => {
         const newTodos = todos.map(t => {
           if (t._id === todo._id) {

@@ -8,18 +8,21 @@ import Login from './Login';
 import Home from './Home';
 import './index.css'
 
+
+export const URL = process.env.REACT_APP_SERVER_URL;
+
 function App() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:4000/user', { withCredentials: true })
+    axios.get(`${URL}/user`, { withCredentials: true })
       .then(response => {
         setEmail(response.data.email);
       });
   }, []);
 
   function logout() {
-    axios.post('http://localhost:4000/logout', {}, { withCredentials: true })
+    axios.post(`${URL}/logout`, {}, { withCredentials: true })
       .then(() => setEmail(''));
   }
 
