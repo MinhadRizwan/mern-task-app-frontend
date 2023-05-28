@@ -3,7 +3,7 @@ import axios from 'axios';
 import UserContext from "./UserContext";
 import { Navigate } from 'react-router-dom';
 import './loginandregister.css';
-
+import { URL } from './App';
 
 function Login() {
 
@@ -18,7 +18,7 @@ function Login() {
     e.preventDefault();
 
     const data = { email, password };
-    axios.post('http://localhost:4000/login', data, { withCredentials: true })
+    axios.post(`${URL}/login`, data, { withCredentials: true })
       .then(response => {
         user.setEmail(response.data.email);
         setEmail('');

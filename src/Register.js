@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserContext from "./UserContext";
 import { Navigate } from 'react-router-dom';
 import './loginandregister.css';
+import { URL } from './App';
 
 function Register() {
 
@@ -16,7 +17,7 @@ function Register() {
     e.preventDefault();
 
     const data = {email,password};
-    axios.post('http://localhost:4000/register', data, {withCredentials:true})
+    axios.post(`${URL}/register`, data, {withCredentials:true})
       .then(response => {
         user.setEmail(response.data.email);
         setEmail('');
